@@ -184,7 +184,9 @@
     {{-- BAGIAN 2: NAVBAR SCROLL YANG STICKY --}}
     <nav id="navbarDetail" class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url('/home') }}"><i class="bi bi-arrow-left me-2"></i>Kembali</a>
+            <a class="navbar-brand fw-bold" href="{{ Auth::check() ? route('home') : route('welcome') }}">
+    <i class="bi bi-arrow-left me-2"></i>Kembali
+</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -203,17 +205,6 @@
         <div class="row gx-lg-5">
             {{-- KOLOM KIRI (DETAIL KURSUS) --}}
             <div class="col-lg-8">
-                @if (session('sukses'))
-    <div class="alert alert-success">
-        {{ session('sukses') }}
-    </div>
-@endif
-
-@if (session('info'))
-    <div class="alert alert-info">
-        {{ session('info') }}
-    </div>
-@endif
                 <section id="deskripsi" class="mb-5">
                     <h2 class="section-title">Tentang Kursus Ini</h2>
                     <p class="fs-5">{{ $kursus->deskripsi }}</p>

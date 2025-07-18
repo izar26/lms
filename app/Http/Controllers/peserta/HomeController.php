@@ -41,4 +41,6 @@ class HomeController extends Controller
     // Kirim kedua data tersebut ke view
     return view('peserta.index', compact('kursus_diikuti', 'kursus_lainnya'));
 }
+
+
 }

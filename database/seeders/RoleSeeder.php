@@ -2,17 +2,34 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role; // Jangan lupa tambahkan ini
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        // Buat peran dengan urutan yang kita inginkan
-        Role::create(['name' => 'Administrator']); // Akan memiliki id = 1
-        Role::create(['name' => 'Instructor']);    // Akan memiliki id = 2
-        Role::create(['name' => 'Peserta']);       // Akan memiliki id = 3
+        DB::table('roles')->insertOrIgnore([
+    [
+        'id' => 1,
+        'name' => 'Administrator',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+    ],
+    [
+        'id' => 2,
+        'name' => 'Instructor',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+    ],
+    [
+        'id' => 3,
+        'name' => 'Peserta',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+    ],
+]);
+
     }
 }

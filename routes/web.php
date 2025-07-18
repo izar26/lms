@@ -3,22 +3,22 @@
 
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Admin\KursusController;
 
-use App\Http\Controllers\Admin\KurikulumController;
 
+use App\Http\Controllers\Admin\KurikulumController;
 use App\Http\Controllers\Admin\TestimoniController;
 
 use App\Http\Controllers\HalamanKursusController;
 
 use App\Http\Controllers\Peserta\HomeController;
+use App\http\Controllers\HomeController as InterfaceController;
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\KursusController as FrontKursusController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\Admin\MateriController as AdminMateriController;
-
+use App\Http\Controllers\KursusController as SemuaKursusController;
 /*
 
 |--------------------------------------------------------------------------
@@ -31,13 +31,9 @@ use App\Http\Controllers\Admin\MateriController as AdminMateriController;
 
 
 
-Route::get('/', function () {
-
-  return view('welcome');
-
-});
-
-
+Route::get('/', [InterfaceController::class, 'index'])->name('welcome');
+Route::get('/kursus/{kursu}', [HalamanKursusController::class, 'show'])->name('kursus.show');
+Route::get('/kursus', [SemuaKursusController::class, 'index'])->name('kursus.index');
 
 // Rute otentikasi, dengan menonaktifkan registrasi publik
 
@@ -53,7 +49,6 @@ Route::middleware('auth')->group(function() {
 
   Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-  Route::get('/kursus/{kursu}', [HalamanKursusController::class, 'show'])->name('kursus.show');
 
   Route::post('/kursus/{kursus}/daftar', [FrontKursusController::class, 'daftar'])->name('kursus.daftar');
 
